@@ -9,3 +9,8 @@ public class Usuario: BaseEntity
     public ICollection<RefreshToken> RefreshTokens { get; set; } = new HashSet<RefreshToken>();
     public ICollection<RolUsuario> RolUsuarios { get; set; }
 }
+
+//TABLA USUARIO, INTERACTUA POR DEFECTO CON ROL
+//Y TIENE TABLA INTERMEDIA ROLUSUARIO
+//PORQUE ES UNA RELACION MUCHOS A MUCHOS
+//UN USUARIO TIENE MUCHOS ROLES Y MUCHOS ROLES TIENEN MUCHOS USUARIOS
