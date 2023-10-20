@@ -1,7 +1,6 @@
 namespace Dominio.Entities;
 
 public class Cliente : BaseEntity{
-    public int IdCliente { get; set; }
     public ICollection<Venta> Ventas { get; set; }
     public string Nombre { get; set; }
     public int IdTipoPersona { get; set; }

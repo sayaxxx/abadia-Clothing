@@ -8,5 +8,5 @@ public class DetalleVenta : BaseEntity{
     public int IdTalla { get; set; }
     public Talla Talla { get; set; }
     public int Cantidad { get; set; }
-    public int VarloUnit { get; set; }
+    public int ValorUnit { get; set; }
 }

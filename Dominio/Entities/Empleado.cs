@@ -1,7 +1,6 @@
 namespace Dominio.Entities;
 
 public class Empleado : BaseEntity {
-    public int IdEmp { get; set; }
     public string Nombre { get; set; }
     public int IdCargo { get; set; }
     public Cargo Cargo { get; set; }
