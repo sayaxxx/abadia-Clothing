@@ -8,11 +8,9 @@ public class TipoProteccionConfiguration : IEntityTypeConfiguration<TipoProtecci
     public void Configure(EntityTypeBuilder<TipoProteccion> builder){
 
         builder.ToTable("tipoProteccion");
-        builder.HasKey(p => p.Id);
 
         builder.Property(p => p.Descripcion)
         .HasColumnName("descripcion")
-        .HasColumnType("varchar")
         .IsRequired();
 
         
