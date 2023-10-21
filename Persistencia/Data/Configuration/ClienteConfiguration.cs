@@ -19,5 +19,9 @@ public class ClienteConfiguration : IEntityTypeConfiguration<Cliente>{
         builder.HasOne(r => r.TipoPersona)
         .WithMany(r => r.Clientes)
         .HasForeignKey(r => r.IdTipoPersona);
+
+        builder.HasOne(r => r.Municipio)
+        .WithMany(r => r.Clientes)
+        .HasForeignKey(r => r.IdMunicipio);
     }
 }

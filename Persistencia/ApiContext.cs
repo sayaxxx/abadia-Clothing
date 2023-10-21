@@ -33,6 +33,7 @@ public class ApiContext : DbContext
     public DbSet<Prenda> Prendas { get; set; }
     public DbSet<Proveedor> Proveedores { get; set; }
     public DbSet<RefreshToken> RefreshTokens { get; set; }
+    public DbSet<TipoPersona> TipoPersonas { get; set; }
 
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)

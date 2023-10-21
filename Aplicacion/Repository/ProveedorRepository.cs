@@ -10,4 +10,16 @@ public class ProveedorRepository : GenericRepo<Proveedor>, IProveedor{
     public ProveedorRepository(ApiContext context) : base (context){
         _context = context;
     }
+    public async Task<IEnumerable<object>> ObtenerProveedoresNaturales(){
+        var Proveedores = await (
+            from p in _context.Proveedores
+            join t in _context.TipoPersonas on p.IdTipoPersona equals t.Id
+            where t.Nombre.Contains("Natural")
+            select new{
+                Nombre = p.Nombre,
+            }).Distinct()
+            .ToListAsync();
+
+        return Proveedores;
+}
 }
