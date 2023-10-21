@@ -1,7 +1,7 @@
 using Dominio.Entities;
 
 namespace Dominio.Interfaces;
-public interface IRol : IGenericRepo<Rol>
-{
+
+public interface IMunicipio : IGenericRepo<Municipio>{
     
 }
