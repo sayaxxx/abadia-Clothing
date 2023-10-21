@@ -370,17 +370,17 @@ namespace Persistencia.Data.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     IdTipoPersona = table.Column<int>(type: "int", nullable: false),
                     FechaRegistro = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    IdMunicipio = table.Column<int>(type: "int", nullable: false),
-                    MunicipioId = table.Column<int>(type: "int", nullable: true)
+                    IdMunicipio = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_cliente", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_cliente_municipio_MunicipioId",
-                        column: x => x.MunicipioId,
+                        name: "FK_cliente_municipio_IdMunicipio",
+                        column: x => x.IdMunicipio,
                         principalTable: "municipio",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_cliente_tipoPersona_IdTipoPersona",
                         column: x => x.IdTipoPersona,
@@ -734,14 +734,14 @@ namespace Persistencia.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
+                name: "IX_cliente_IdMunicipio",
+                table: "cliente",
+                column: "IdMunicipio");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_cliente_IdTipoPersona",
                 table: "cliente",
                 column: "IdTipoPersona");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_cliente_MunicipioId",
-                table: "cliente",
-                column: "MunicipioId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_departamento_IdPais",

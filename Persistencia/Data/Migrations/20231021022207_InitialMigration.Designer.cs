@@ -11,7 +11,7 @@ using Persistencia;
 namespace Persistencia.Data.Migrations
 {
     [DbContext(typeof(ApiContext))]
-    [Migration("20231020235247_InitialMigration")]
+    [Migration("20231021022207_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -55,18 +55,15 @@ namespace Persistencia.Data.Migrations
                     b.Property<int>("IdTipoPersona")
                         .HasColumnType("int");
 
-                    b.Property<int?>("MunicipioId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdTipoPersona");
+                    b.HasIndex("IdMunicipio");
 
-                    b.HasIndex("MunicipioId");
+                    b.HasIndex("IdTipoPersona");
 
                     b.ToTable("cliente", (string)null);
                 });
@@ -726,15 +723,17 @@ namespace Persistencia.Data.Migrations
 
             modelBuilder.Entity("Dominio.Entities.Cliente", b =>
                 {
+                    b.HasOne("Dominio.Entities.Municipio", "Municipio")
+                        .WithMany("Clientes")
+                        .HasForeignKey("IdMunicipio")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Dominio.Entities.TipoPersona", "TipoPersona")
                         .WithMany("Clientes")
                         .HasForeignKey("IdTipoPersona")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Dominio.Entities.Municipio", "Municipio")
-                        .WithMany("Clientes")
-                        .HasForeignKey("MunicipioId");
 
                     b.Navigation("Municipio");
 
